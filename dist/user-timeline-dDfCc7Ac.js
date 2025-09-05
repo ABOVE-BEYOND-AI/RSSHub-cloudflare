@@ -1,0 +1,12 @@
+import{config as e}from"./config-HRWLmo66.js";import"./logger-DHpG8Bim.js";import"./helpers-LVq640iW.js";import"./cache-C3AIQtoX.js";import"./render-DE4LRFBD.js";import"./parse-date-DHsdom8D.js";import"./ofetch-DRl42yaJ.js";import"./esm-shims-BDPl6Msv.js";import"./got-BaOFZRd4.js";import{ViewType as t}from"./types-D9T3SQ-7.js";import{invalid_parameter_default as n}from"./invalid-parameter-CfUmvEUg.js";import{config_not_found_default as r}from"./config-not-found-B7nOMdXp.js";import{fallback as i,queryToBoolean as a}from"./readable-social-Dobs5p4y.js";import{utils_default as o}from"./utils-Ux47joSL.js";import s from"node:querystring";const c={path:`/users/notes/:username/:routeParams?`,categories:[`social-media`],view:t.SocialMedia,example:`/misskey/users/notes/support@misskey.io`,parameters:{username:`Misskey username in the format of username@instance.domain`,routeParams:`
+| Key               | Description                             | Accepted Values | Default |
+| ----------------- | --------------------------------------- | --------------- | ------- |
+| withRenotes       | Include renotes in the timeline         | 0/1/true/false  | false   |
+| mediaOnly         | Only return posts containing media      | 0/1/true/false  | false   |
+| simplifyAuthor    | Simplify author field in feed items     | 0/1/true/false  | false   |
+
+Note: \`withRenotes\` and \`mediaOnly\` are mutually exclusive and cannot both be set to true.
+
+Examples:
+- /misskey/users/notes/mttb2ccp@misskey.io/withRenotes=true
+- /misskey/users/notes/mttb2ccp@misskey.io/mediaOnly=true`},features:{requireConfig:!1,requirePuppeteer:!1,antiCrawler:!1,supportBT:!1,supportPodcast:!1,supportScihub:!1},name:`User timeline`,maintainers:[`siygle`,`SnowAgar25`,`HanaokaYuzu`],handler:l};async function l(t){let c=t.req.param(`username`),[,l,u]=c.match(/@?(\w+)@(\w+\.\w+)/)||[];if(!l||!u)throw new n(`Provide a valid Misskey username`);if(!e.feature.allow_user_supply_unsafe_domain&&!o.allowSiteList.includes(u))throw new r(`This RSS is disabled unless 'ALLOW_USER_SUPPLY_UNSAFE_DOMAIN' is set to 'true'.`);let d=s.parse(t.req.param(`routeParams`)),f=i(void 0,a(d.withRenotes),!1),p=i(void 0,a(d.mediaOnly),!1),m=i(void 0,a(d.simplifyAuthor),!1);if(f&&p)throw new n(`withRenotes and mediaOnly cannot both be true.`);let{accountData:h,avatarUrl:g}=await o.getUserTimelineByUsername(l,u,{withRenotes:f,mediaOnly:p});return{title:`User timeline for ${c} on ${u}`,link:`https://${u}/@${l}`,image:g??``,item:o.parseNotes(h,u,m)}}export{c as route};

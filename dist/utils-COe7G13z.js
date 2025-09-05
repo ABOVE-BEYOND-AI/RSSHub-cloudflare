@@ -1,0 +1,1 @@
+import{md5 as e}from"./md5-15Cn4YyR.js";function t(t){let n=Object.entries(t).map(e=>`${e[1].os}/${e[1].architecture},${e[1].digest}`).sort((e,t)=>e.localeCompare(t)),r=n.join(`|`);return e(r)}export{t as hash};

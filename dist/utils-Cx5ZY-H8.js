@@ -1,0 +1,1 @@
+import{parseDate as e}from"./parse-date-DHsdom8D.js";const t=t=>t.map(t=>({title:t.title.rendered,description:t.content.rendered,pubDate:e(t.date_gmt),link:t.link}));export{t as parseItem};

@@ -1,0 +1,8 @@
+import"./config-HRWLmo66.js";import"./logger-DHpG8Bim.js";import"./parse-date-DHsdom8D.js";import{ofetch_default as e}from"./ofetch-DRl42yaJ.js";import{ViewType as t}from"./types-D9T3SQ-7.js";import{author as n,language as r,processItems as i,rootUrl as a}from"./util-gcMN6cRV.js";const o=async t=>{let{id:o}=t.req.param(),s=Number.parseInt(t.req.query(`limit`)??`30`,10),c=a,l=new URL(`api/articles/${o?`categoryId`:`all`}`,a).href,u=new URL(`api/categories/all`,a).href,d=await e(l,{query:{datasrc:o?`categoriesall`:`articles`,current:1,size:s,categoryId:o}}),f=await e(u,{query:{datasrc:`categories`}}),p=f.data.find(e=>e.categoryid===o)?.category,m=i(d.data.records,s);return{title:`${n}${p?` - ${p}`:``}`,description:p,link:c,item:m,allowEmpty:!0,author:n,language:r}},s={path:`/n/category/:id?`,name:`盐选故事分类`,url:`n.ifun.cool`,maintainers:[`nczitzk`],handler:o,example:`/ifun/n/category`,parameters:{id:`分类 id，默认为空，即全部，见下表`},description:`
+| 名称     | ID  |
+| -------- | --- |
+| 全部     |     |
+| 通告     | 1   |
+| 故事盐选 | 2   |
+| 趣集精选 | 3   |
+    `,categories:[`new-media`],features:{requireConfig:!1,requirePuppeteer:!1,antiCrawler:!1,supportRadar:!0,supportBT:!1,supportPodcast:!1,supportScihub:!1},radar:[{source:[`n.ifun.cool`],target:`/n/category/:id?`},{title:`全部`,source:[`n.ifun.cool`],target:`/n/category`},{title:`通告`,source:[`n.ifun.cool`],target:`/n/category/1`},{title:`盐选故事`,source:[`n.ifun.cool`],target:`/n/category/2`},{title:`趣集精选`,source:[`n.ifun.cool`],target:`/n/category/3`}],view:t.Articles};export{o as handler,s as route};

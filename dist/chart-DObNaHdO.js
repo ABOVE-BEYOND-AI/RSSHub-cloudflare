@@ -1,0 +1,9 @@
+import"./config-HRWLmo66.js";import"./logger-DHpG8Bim.js";import{art as e}from"./render-DE4LRFBD.js";import{ofetch_default as t}from"./ofetch-DRl42yaJ.js";import{__dirname as n}from"./esm-shims-BDPl6Msv.js";import r from"node:path";import{load as i}from"cheerio";const a=`https://www.openrice.com`,o={path:`/:lang/hongkong/explore/chart/:category`,maintainers:[`after9`],handler:s,categories:[`shopping`],example:`/openrice/zh/hongkong/explore/chart/most-bookmarked`,parameters:{lang:`语言，缺省为 zh`,category:`类别，缺省为 most-bookmarked`},name:`香港餐廳排行榜`,description:`
+| 简体 | 繁體 | EN |
+| ----- | ------ | ----- |
+| zh-cn | zh | en |
+
+| 最多收藏 | 每周最高评分 | 最高浏览 | 最佳甜品餐厅 |
+| ----- | ------ | ----- | ----- |
+| most-bookmarked | best-rating | most-popular | best-dessert |
+  `};async function s(o){let s=o.req.param(`lang`)??`zh`,c=o.req.param(`category`)??`most-bookmarked`,l=`/${s}/hongkong/explore/chart/${c}`,u=await t(a+l),d=i(u),f=d(`title`).text()??`Hong Kong Restaurant Chart`,p=d(`title`).text()??`Hong Kong Restaurant Chart`,m=d(`.poi-chart-main-grid-item-desktop-wrapper`),h=m.toArray().map(t=>{let i=d(t),a=i.find(`.rank-icon`).attr(`class`),o=a?.match(/rank-(\d+)/)?.[1]??``,s=i.find(`.pcmgidtr-left-section-poi-info-details .pcmgidtrls-poi-info-details-text`),c=s.toArray().map(e=>d(e).text()),l=i.find(`.pcmgidtr-left-section-poi-info-name .link`).text()??``,u=i.find(`.pcmgidtr-left-section-poi-info-name .link`).attr(`href`)??``,f=i.find(`.pcmgidtr-left-section-door-photo img`).attr(`src`)??null,p=e(r.join(n,`templates/chart-4d0fc4e6.art`),{description:c??[],rankNumber:o,image:f});return{title:l,description:p,link:u}});return{title:f,link:a+l,description:p,item:h}}export{o as route};

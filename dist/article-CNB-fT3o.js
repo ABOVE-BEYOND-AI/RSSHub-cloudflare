@@ -1,0 +1,1 @@
+import{got_default as e}from"./got-BaOFZRd4.js";import{load as t}from"cheerio";const n=`EVERIA.CLUB`,r=`https://everia.club/`;async function i(n){let r=await e(n),i=t(r.body),a=i(`h2.entry-title`).text().trim(),o=i(`.wp-block-image`).toArray().map(e=>i.html(e)).join(``);return{title:a,description:o,link:n}}var a=i;export{n as SUB_NAME_PREFIX,r as SUB_URL,a as article_default};

@@ -1,0 +1,11 @@
+import"./config-HRWLmo66.js";import"./logger-DHpG8Bim.js";import"./cache-C3AIQtoX.js";import"./render-DE4LRFBD.js";import"./parse-date-DHsdom8D.js";import"./ofetch-DRl42yaJ.js";import"./not-found-BfsMaUzS.js";import"./esm-shims-BDPl6Msv.js";import{invalid_parameter_default as e}from"./invalid-parameter-CfUmvEUg.js";import{callApi as t,getDataByChannelId as n,utils_default as r}from"./utils-CTZ4V7rJ.js";import{getDataByChannelId as i}from"./youtubei-Dc41JYoS.js";const a={path:`/channel/:id/:routeParams?`,categories:[`social-media`],example:`/youtube/channel/UCDwDMPOZfxVV0x_dz0eQ8KQ`,parameters:{id:`YouTube channel id`,routeParams:`Extra parameters, see the table below`},radar:[{source:[`www.youtube.com/channel/:id`],target:`/channel/:id`}],name:`Channel with id`,maintainers:[`DIYgod`,`pseudoyu`],handler:o,description:`:::tip Parameter
+| Name       | Description                                                                         | Default |
+| ---------- | ----------------------------------------------------------------------------------- | ------- |
+| embed      | Whether to embed the video, fill in any value to disable embedding                  | embed   |
+| filterShorts | Whether to filter out shorts from the feed, fill in any falsy value to show shorts | true    |
+:::
+
+::: tip
+YouTube provides official RSS feeds for channels, for instance [https://www.youtube.com/feeds/videos.xml?channel_id=UCDwDMPOZfxVV0x_dz0eQ8KQ](https://www.youtube.com/feeds/videos.xml?channel_id=UCDwDMPOZfxVV0x_dz0eQ8KQ).
+:::`,features:{requireConfig:[{name:`YOUTUBE_KEY`,description:" YouTube API Key, support multiple keys, split them with `,`, [API Key application](https://console.developers.google.com/)",optional:!0}],requirePuppeteer:!1,antiCrawler:!1,supportBT:!1,supportPodcast:!1,supportScihub:!1}};async function o(a){let o=a.req.param(`id`),s=a.req.param(`routeParams`),c=new URLSearchParams(s),l=!c.get(`embed`),u=c.get(`filterShorts`),d=u===null||u===``||u===`true`;if(!r.isYouTubeChannelId(o))throw new e(`Invalid YouTube channel ID. 
+You may want to use <code>/youtube/user/:id</code> instead.`);let f=await t({googleApi:n,youtubeiApi:i,params:{channelId:o,embed:l,filterShorts:d}});return f}export{a as route};

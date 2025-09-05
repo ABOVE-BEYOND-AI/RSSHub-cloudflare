@@ -1,0 +1,1 @@
+import{art as e}from"./render-DE4LRFBD.js";import{__dirname as t}from"./esm-shims-BDPl6Msv.js";import n from"node:path";const r=e=>e.props.pageProps.data.summary+e.props.pageProps.data.memo,i=r=>e(n.join(t,`templates/work-3a78c1e3.art`),{data:r.props.pageProps.data});export{r as extractArticle,i as extractWork};

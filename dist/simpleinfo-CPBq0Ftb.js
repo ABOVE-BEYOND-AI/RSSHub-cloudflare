@@ -1,0 +1,11 @@
+import"./config-HRWLmo66.js";import"./logger-DHpG8Bim.js";import"./helpers-LVq640iW.js";import{cache_default as e}from"./cache-C3AIQtoX.js";import{art as t}from"./render-DE4LRFBD.js";import{parseDate as n}from"./parse-date-DHsdom8D.js";import"./ofetch-DRl42yaJ.js";import{__dirname as r}from"./esm-shims-BDPl6Msv.js";import{got_default as i}from"./got-BaOFZRd4.js";import{timezone as a}from"./timezone-BrxBCotj.js";import o from"node:path";import{load as s}from"cheerio";const c={path:`/:category?`,categories:[`new-media`],example:`/simpleinfo`,parameters:{category:`分类名`},features:{requireConfig:!1,requirePuppeteer:!1,antiCrawler:!1,supportBT:!1,supportPodcast:!1,supportScihub:!1},radar:[{source:[`blog.simpleinfo.cc/blog/:category`],target:`/:category`}],name:`志祺七七`,maintainers:[`haukeng`],handler:l,description:`| 夥伴聊聊 | 專案設計 |
+| -------- | -------- |
+| work     | talk     |
+
+| 國內外新聞 | 政治百分百 | 社會觀察家 | 心理與哲學            |
+| ---------- | ---------- | ---------- | --------------------- |
+| news       | politics   | society    | psychology-philosophy |
+
+| 科學大探索 | 環境與健康         | ACG 快樂聊 | 好書籍分享   | 其它主題     |
+| ---------- | ------------------ | ---------- | ------------ | ------------ |
+| science    | environment-health | acg        | book-sharing | other-topics |`};async function l(c){let l=c.req.param(`category`),u=`https://blog.simpleinfo.cc${l?l===`work`||l===`talk`?`/blog/${l}`:`/shasha77?category=${l}`:`/shasha77`}`,d=await i(u),f=s(d.data),p=`${f(`.-active`).text()} - 簡訊設計`;f(`.-ad`).remove();let m=f(`.article-item`).toArray().map(e=>(e=f(e),{title:e.find(`.title`).text(),link:e.find(`a`).first().attr(`href`),category:e.find(`.category`).text()})),h=await Promise.all(m.map(c=>e.tryGet(c.link,async()=>{let e=await i(c.link),l=s(e.data);return c.author=l(`meta[property="article:author"]`).attr(`content`),c.pubDate=a(n(l(`meta[property="article:published_time"]`).attr(`content`)),8),c.description=t(o.join(r,`templates/description-40eff032.art`),{image:l(`meta[property="og:image"]`).attr(`content`),description:l(`.article-content`).first().html()}),c})));return{title:p,link:u,language:`zh-tw`,item:h}}export{c as route};

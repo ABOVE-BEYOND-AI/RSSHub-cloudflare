@@ -1,0 +1,1 @@
+import{art as e}from"./render-DE4LRFBD.js";import{__dirname as t}from"./esm-shims-BDPl6Msv.js";import n from"node:path";const r=(r,i)=>e(n.join(t,`templates/courseDesc-4e7c77df.art`),{picurl:r,desc:i});var i={courseDesc:r};export{i as utils_default};

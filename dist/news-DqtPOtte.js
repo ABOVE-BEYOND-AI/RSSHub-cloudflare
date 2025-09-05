@@ -1,0 +1,14 @@
+import"./config-HRWLmo66.js";import"./logger-DHpG8Bim.js";import"./helpers-LVq640iW.js";import{cache_default as e}from"./cache-C3AIQtoX.js";import{art as t}from"./render-DE4LRFBD.js";import{parseDate as n}from"./parse-date-DHsdom8D.js";import"./ofetch-DRl42yaJ.js";import{__dirname as r}from"./esm-shims-BDPl6Msv.js";import{got_default as i}from"./got-BaOFZRd4.js";import{timezone as a}from"./timezone-BrxBCotj.js";import o from"node:path";import{load as s}from"cheerio";const c={path:`/:language/news/:category?`,categories:[`new-media`],example:`/dn/en-us/news`,parameters:{language:`Language, see below`,category:`Category, see below, The Latest by default`},features:{requireConfig:!1,requirePuppeteer:!1,antiCrawler:!1,supportBT:!1,supportPodcast:!1,supportScihub:!1},name:`News`,maintainers:[`nczitzk`],handler:l,description:`#### Language
+
+| English | 中文  |
+| ------- | ----- |
+| en-us   | zh-cn |
+
+#### Category
+
+| English Category     | 中文分类 | Category id |
+| -------------------- | -------- | ----------- |
+| The Latest           | 最新     |             |
+| Industry Information | 行业资讯 | category-1  |
+| Knowledge            | 域名知识 | category-2  |
+| Investment           | 域名投资 | category-3  |`};async function l(c){let{language:l,category:u=``}=c.req.param(),d=c.req.query(`limit`)?Number.parseInt(c.req.query(`limit`),10):10,f=`https://dn.com`,p=new URL(`/${l}/news/${u}`,f).href,{data:m}=await i(p),h=s(m),g=h(`a.list-item`).slice(0,d).toArray().map(e=>{e=h(e);let i=e.find(`div.img img`);return{title:e.find(`h2.ellipse2`).text(),link:new URL(e.prop(`href`),f).href,description:t(o.join(r,`templates/description-024a8505.art`),{image:i?{src:i.prop(`src`),alt:i.prop(`alt`)}:void 0,abstracts:e.find(`p.abstract`).html()}),category:e.find(`span.cat`).toArray().map(e=>h(e).text()),pubDate:a(n(e.find(`span.time`).text()),8)}});g=await Promise.all(g.map(c=>e.tryGet(c.link,async()=>{let{data:e}=await i(c.link),l=s(e);return c.title=l(`h1.tit`).text(),c.description=t(o.join(r,`templates/description-024a8505.art`),{abstracts:l(`div.abstract`).html(),description:l(`div.detail`).html()}),c.author=l(`span.author`).text().replace(/(By|作者)\s/,``),c.category=[...c.category,...l(`div.tags p a`).toArray().map(e=>l(e).text())],c.pubDate=a(n(l(`span.date`).text()),8),c})));let _=h(`a.logo img`).prop(`alt`),v=h(`link[rel="icon"]`).prop(`href`);return{item:g,title:`${_} - ${h(`div.group a.active`).text()}`,link:p,description:h(`meta[name="description"]`).prop(`content`),language:h(`html`).prop(`lang`),image:new URL(h(`a.logo img`).prop(`src`),f).href,icon:v,logo:v,subtitle:h(`title`).text(),author:_}}export{c as route};

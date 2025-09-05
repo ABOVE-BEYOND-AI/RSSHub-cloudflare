@@ -1,0 +1,1 @@
+import{parseDate as e}from"./parse-date-DHsdom8D.js";import{got_default as t}from"./got-BaOFZRd4.js";import{timezone as n}from"./timezone-BrxBCotj.js";async function r(r,i){let a=`https://www.lifeweek.com.cn/api/article/${r.id}`,{data:o}=await t(a),s=n(e(r.pubTime),8);return{title:r.title,description:o.model.content,link:i,pubDate:s}}var i=r;export{i as utils_default};

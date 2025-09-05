@@ -23,7 +23,7 @@ docs/.vuepress/dist
 memory-bank/
 node_modules
 tmp
-dist
+
 
 Session.vim
 combined.log

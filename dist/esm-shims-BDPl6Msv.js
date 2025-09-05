@@ -1,0 +1,1 @@
+import e from"node:path";import{fileURLToPath as t}from"node:url";const n=()=>t(import.meta.url),r=()=>e.dirname(n()),i=r();export{i as __dirname};
